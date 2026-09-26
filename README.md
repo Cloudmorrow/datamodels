@@ -16,6 +16,13 @@ They come in **domains**, chosen together when you install a Cloudmorrow
 | Fleet | `vehicle` |
 | Calendars | `calendar`, `event` |
 | Messaging | `channel`, `message` |
+| Notes | `note` |
+
+A **space** (`space = true`: a calendar, a channel) is personal, shared with
+members, or public, and what is in it (`in_space = "calendar"`) is for
+whoever may see the space. A few foundational datamodels are kept by a
+**backend** instead of the record store (`backend = "notes"`): notes stay
+the Markdown files they always were.
 
 A server copies in the ones its Quills use, from the release the
 [Quill Catalog](https://github.com/Cloudmorrow/quill-catalog) pins, and keeps
