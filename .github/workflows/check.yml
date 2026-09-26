@@ -1,0 +1,27 @@
+# Every datamodel parses and checks, and every link points at one that exists.
+name: check
+on: [push, pull_request]
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install "cloudmorrow @ git+https://github.com/Cloudmorrow/cloudmorrow"
+      - name: check
+        run: |
+          python - <<'PY'
+          import tomllib
+          from pathlib import Path
+          from cloudmorrow.server.quills import _scan_datamodels
+          found = _scan_datamodels(Path("."))
+          for model, _ in found.values():
+              for f in model.fields:
+                  assert f.kind != "link" or f.to in found, f"{model.id}.{f.name} links to {f.to}"
+          domains = tomllib.loads(Path("domains.toml").read_text())["domains"]
+          listed = {m for d in domains for m in d["datamodels"]}
+          assert listed == set(found), sorted(listed ^ set(found))
+          print(f"{len(found)} datamodels in {len(domains)} domains check out")
+          PY

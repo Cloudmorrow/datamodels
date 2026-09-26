@@ -1,0 +1,51 @@
+# Foundational datamodels
+
+The standard kinds of data in [Cloudmorrow](https://github.com/Cloudmorrow/cloudmorrow):
+the shapes every [Quill](https://github.com/Cloudmorrow/cloudmorrow/blob/main/docs/QUILLS.md)
+agrees on. A contact is a contact whichever Quill made it; a Quill that needs
+more adds fields of its own to one of these, rather than inventing a second
+kind of contact.
+
+They come in **domains**, chosen together when you install a Cloudmorrow
+([`domains.toml`](domains.toml)):
+
+| domain | datamodels |
+| --- | --- |
+| Tasks | `board`, `task` |
+| Customers (CRM) | `contact`, `organisation` |
+| Fleet | `vehicle` |
+| Calendars | `calendar`, `event` |
+| Messaging | `channel`, `message` |
+
+A server copies in the ones its Quills use, from the release the
+[Quill Catalog](https://github.com/Cloudmorrow/quill-catalog) pins, and keeps
+them: it never needs this repository to run.
+
+## The format
+
+```toml
+[datamodel]
+id = "task"
+version = 1
+label = "Task"
+description = "One thing to do, on a board, in a lane."
+domain = "tasks"
+scopes = ["personal"]
+title = "title"
+ordered_within = ["board", "lane"]
+
+[fields]
+board = { kind = "link", to = "board", required = true, indexed = true, on_delete = "cascade" }
+title = { kind = "string", required = true }
+lane  = { kind = "enum", values = ["todo", "doing", "done"], labels = ["To Do", "Doing", "Done"], default = "todo", indexed = true }
+```
+
+Field kinds: string, text, markdown, bool, int, decimal, date, datetime, enum,
+email, phone, url, link, json. Indexed fields are plain on disk so a server can
+filter by them; everything else is encrypted at rest.
+
+## Changing one
+
+Versions are integers and a released version never changes. A new standard
+field arrives as a new version; the bar for a new datamodel here is that two
+unrelated Quills wanted it. Open a pull request with the reason.
