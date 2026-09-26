@@ -17,12 +17,14 @@ They come in **domains**, chosen together when you install a Cloudmorrow
 | Calendars | `calendar`, `event` |
 | Messaging | `channel`, `message` |
 | Notes | `note` |
+| Secrets | `secret` |
 
 A **space** (`space = true`: a calendar, a channel) is personal, shared with
 members, or public, and what is in it (`in_space = "calendar"`) is for
 whoever may see the space. A few foundational datamodels are kept by a
 **backend** instead of the record store (`backend = "notes"`): notes stay
-the Markdown files they always were.
+the Markdown files they always were, and secrets stay in the store `cm secret`
+has always used (`backend = "vaults"`).
 
 A server copies in the ones its Quills use, from the release the
 [Quill Catalog](https://github.com/Cloudmorrow/quill-catalog) pins, and keeps
@@ -49,7 +51,9 @@ lane  = { kind = "enum", values = ["todo", "doing", "done"], labels = ["To Do", 
 
 Field kinds: string, text, markdown, bool, int, decimal, date, datetime, enum,
 email, phone, url, link, json. Indexed fields are plain on disk so a server can
-filter by them; everything else is encrypted at rest.
+filter by them; everything else is encrypted at rest. `secret = true` on a string
+or text field keeps it out of every listing and has every surface draw it
+hidden until it is asked for.
 
 ## Changing one
 
