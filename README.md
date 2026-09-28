@@ -12,7 +12,7 @@ They come in **domains**, chosen together when you install a Cloudmorrow
 | domain | datamodels |
 | --- | --- |
 | Tasks | `board`, `task` |
-| Customers (CRM) | `contact`, `organisation` |
+| Customers (CRM) | `book`, `organisation`, `contact`, `stage`, `deal`, `activity` |
 | Fleet | `vehicle` |
 | Calendars | `calendar`, `event` |
 | Messaging | `channel`, `message` |
@@ -21,7 +21,10 @@ They come in **domains**, chosen together when you install a Cloudmorrow
 
 A **space** (`space = true`: a calendar, a channel) is personal, shared with
 members, or public, and what is in it (`in_space = "calendar"`) is for
-whoever may see the space. A few foundational datamodels are kept by a
+whoever may see the space; left out of any — its space link empty — it is
+its writer's own. A CRM's `book` is a space: the organisations, people,
+deals and activities a team keeps together, and the `stage`s of its
+pipeline, in order. A few foundational datamodels are kept by a
 **backend** instead of the record store (`backend = "notes"`): notes stay
 the Markdown files they always were, and secrets stay in the store `cm secret`
 has always used (`backend = "vaults"`).
