@@ -32,7 +32,6 @@ They come in **domains**, chosen together when you install a Cloudmorrow
 | Fleet | `vehicle` |
 | Calendars | `calendar`, `event` |
 | Messaging | `channel`, `message` |
-| Notes | `note` |
 | Secrets | `secret` |
 
 A **space** (`space = true`: a calendar, a channel) is personal, shared with
@@ -41,9 +40,11 @@ whoever may see the space; left out of any — its space link empty — it is
 its writer's own. A CRM's `book` is a space: the organisations, people,
 deals and activities a team keeps together, and the `stage`s of its
 pipeline, in order. A few foundational datamodels are kept by a
-**backend** instead of the record store (`backend = "notes"`): notes stay
-the Markdown files they always were, and secrets stay in the store `cm secret`
-has always used (`backend = "vaults"`).
+**backend** instead of the record store: files stay the files they are
+(`backend = "shares"`), and secrets stay in the store `cm secret` has
+always used (`backend = "vaults"`). A note is not a datamodel: it is a
+Markdown file in the Notes folder of a drive, and the Notes Quill is an
+editor over `file` within it.
 
 A server copies in the ones its Quills use, from the release the
 [Quill Catalog](https://github.com/Cloudmorrow/quill-catalog) pins, and keeps
