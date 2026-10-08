@@ -14,7 +14,9 @@ repository: the shapes Cloudmorrow decides every Quill should agree on,
 grown by our hand, by pull request here. **Extended** ones are what a Quill
 adds on top — fields of its own on a foundational datamodel
 (`fleet.odometer` on a `vehicle`), or whole datamodels under its own name
-(`fleet.service_visit`) — declared in the Quill's own repository.
+(`fleet.service_visit`) — declared in the Quill's own repository and shown
+on the Quill's page in the catalog. This repository, and the registry page,
+hold only the foundational ones.
 
 They come in **domains**, chosen together when you install a Cloudmorrow
 ([`domains.toml`](domains.toml)):
