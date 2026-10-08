@@ -1,0 +1,20 @@
+[datamodel]
+id = "product"
+version = 1
+label = "Product"
+description = "Something you sell, a thing or a service: what it is called, what it costs, and whether it is still on offer. Kept in a book, with the customers."
+domain = "products"
+scopes = ["personal", "shared", "public"]
+title = "name"
+in_space = "book"
+
+[fields]
+book = { kind = "link", to = "book", indexed = true, on_delete = "cascade" }
+name = { kind = "string", required = true }
+kind = { kind = "enum", values = ["product", "service"], labels = ["Product", "Service"], default = "product", indexed = true }
+sku = { kind = "string", indexed = true, label = "SKU" }
+unit = { kind = "string", description = "pcs, hour, day, kg" }
+price = { kind = "decimal", indexed = true, description = "What it usually costs; a price list may say otherwise" }
+currency = { kind = "string" }
+active = { kind = "bool", default = true, indexed = true, label = "On offer" }
+description = { kind = "markdown" }

@@ -1,0 +1,16 @@
+[datamodel]
+id = "stock_movement"
+version = 1
+label = "Stock movement"
+description = "A count going up or down: what came in, went out, was used or was corrected, and why."
+domain = "inventory"
+scopes = ["personal", "shared"]
+title = "what"
+
+[fields]
+item = { kind = "link", to = "stock_item", required = true, indexed = true, on_delete = "cascade" }
+what = { kind = "string", required = true }
+on = { kind = "datetime", required = true, indexed = true }
+change = { kind = "decimal", required = true, description = "Positive in, negative out" }
+reason = { kind = "enum", values = ["received", "sold", "used", "adjusted", "moved"], labels = ["Received", "Sold", "Used", "Adjusted", "Moved"], default = "adjusted", indexed = true }
+notes = { kind = "markdown" }

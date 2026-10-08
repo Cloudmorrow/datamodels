@@ -1,0 +1,20 @@
+[datamodel]
+id = "purchase_order"
+version = 1
+label = "Purchase order"
+description = "What you ordered from a supplier: when, what it comes to, and whether it has arrived."
+domain = "purchasing"
+scopes = ["personal", "shared", "public"]
+title = "number"
+in_space = "book"
+
+[fields]
+book = { kind = "link", to = "book", indexed = true, on_delete = "cascade" }
+number = { kind = "string", required = true, indexed = true }
+supplier = { kind = "link", to = "supplier", required = true, indexed = true, on_delete = "clear" }
+ordered = { kind = "date", indexed = true }
+expected = { kind = "date", indexed = true }
+status = { kind = "enum", values = ["draft", "sent", "received", "cancelled"], labels = ["Draft", "Sent", "Received", "Cancelled"], default = "draft", indexed = true }
+currency = { kind = "string" }
+total = { kind = "decimal", indexed = true }
+notes = { kind = "markdown" }

@@ -1,0 +1,19 @@
+[datamodel]
+id = "obligation"
+version = 1
+label = "Obligation"
+description = "Something an agreement says must happen: a payment, a notice, a renewal — by when, by whom, and whether it is done."
+domain = "agreements"
+scopes = ["personal", "shared", "public"]
+title = "what"
+in_space = "book"
+
+[fields]
+book = { kind = "link", to = "book", indexed = true, on_delete = "cascade" }
+agreement = { kind = "link", to = "agreement", required = true, indexed = true, on_delete = "cascade" }
+what = { kind = "string", required = true }
+due = { kind = "date", indexed = true }
+whose = { kind = "enum", values = ["ours", "theirs"], labels = ["Ours", "Theirs"], default = "ours", indexed = true }
+done = { kind = "bool", default = false, indexed = true }
+done_at = { kind = "datetime", indexed = true, label = "Done", stamp = { field = "done", value = "true" } }
+notes = { kind = "markdown" }

@@ -1,0 +1,18 @@
+[datamodel]
+id = "stock_item"
+version = 1
+label = "Stock item"
+description = "Something you keep a count of: how many there are, where, and when to order more. Fungible — one is as good as another."
+domain = "inventory"
+scopes = ["personal", "shared"]
+title = "name"
+
+[fields]
+name = { kind = "string", required = true }
+sku = { kind = "string", indexed = true, label = "SKU" }
+product = { kind = "link", to = "product", on_delete = "clear", description = "The product it is stock of, when you sell it" }
+location = { kind = "link", to = "storage_location", indexed = true, on_delete = "clear" }
+quantity = { kind = "decimal", default = 0, indexed = true }
+unit = { kind = "string" }
+reorder_at = { kind = "decimal", label = "Reorder when below" }
+notes = { kind = "markdown" }

@@ -1,0 +1,20 @@
+[datamodel]
+id = "membership"
+version = 1
+label = "Membership"
+description = "Somebody's membership of an association: what kind, from when, until when, and what it costs."
+domain = "membership"
+scopes = ["personal", "shared", "public"]
+title = "kind"
+in_space = "association"
+
+[fields]
+association = { kind = "link", to = "association", required = true, indexed = true, on_delete = "cascade" }
+contact = { kind = "link", to = "contact", required = true, indexed = true, on_delete = "clear", label = "Member" }
+kind = { kind = "string", required = true, indexed = true, description = "Full, Family, Junior, Honorary" }
+starts = { kind = "date", indexed = true }
+ends = { kind = "date", indexed = true }
+status = { kind = "enum", values = ["active", "lapsed", "ended"], labels = ["Active", "Lapsed", "Ended"], default = "active", indexed = true }
+fee = { kind = "decimal" }
+currency = { kind = "string" }
+notes = { kind = "markdown" }

@@ -1,0 +1,18 @@
+[datamodel]
+id = "maintenance"
+version = 1
+label = "Maintenance"
+description = "Something done to an asset: a service, a repair, an inspection — when, by whom, and what it cost."
+domain = "inventory"
+scopes = ["personal", "shared"]
+title = "what"
+
+[fields]
+asset = { kind = "link", to = "asset", required = true, indexed = true, on_delete = "cascade" }
+what = { kind = "string", required = true }
+on = { kind = "date", required = true, indexed = true }
+by = { kind = "string", description = "Who did it" }
+cost = { kind = "decimal" }
+currency = { kind = "string" }
+next_due = { kind = "date", indexed = true }
+notes = { kind = "markdown" }

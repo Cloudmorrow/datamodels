@@ -1,0 +1,22 @@
+[datamodel]
+id = "agreement"
+version = 1
+label = "Agreement"
+description = "A contract, a lease, a subscription: with whom, from when to when, where the signed document is, and what it obliges. Kept in a book, with the customers and suppliers."
+domain = "agreements"
+scopes = ["personal", "shared", "public"]
+title = "title"
+in_space = "book"
+
+[fields]
+book = { kind = "link", to = "book", indexed = true, on_delete = "cascade" }
+title = { kind = "string", required = true }
+kind = { kind = "string", indexed = true, description = "Lease, Service contract, NDA" }
+organisation = { kind = "link", to = "organisation", on_delete = "clear" }
+contact = { kind = "link", to = "contact", on_delete = "clear", label = "Person" }
+signed = { kind = "date", indexed = true }
+starts = { kind = "date", indexed = true }
+ends = { kind = "date", indexed = true }
+status = { kind = "enum", values = ["draft", "active", "ended", "cancelled"], labels = ["Draft", "Active", "Ended", "Cancelled"], default = "draft", indexed = true }
+document = { kind = "string", description = "Where the signed document is in your drive: Agreements/lease-2026.pdf" }
+notes = { kind = "markdown" }

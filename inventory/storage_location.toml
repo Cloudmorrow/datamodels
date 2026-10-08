@@ -1,0 +1,13 @@
+[datamodel]
+id = "storage_location"
+version = 1
+label = "Storage location"
+description = "Where stock and assets are kept: a warehouse, a shelf, a van."
+domain = "inventory"
+scopes = ["personal", "shared"]
+title = "name"
+
+[fields]
+name = { kind = "string", required = true }
+where = { kind = "string", description = "The address, the building, the room" }
+notes = { kind = "markdown" }

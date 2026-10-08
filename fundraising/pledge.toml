@@ -1,0 +1,23 @@
+[datamodel]
+id = "pledge"
+version = 1
+label = "Pledge"
+description = "A promise to give to a campaign: how much, from whom, by when, and whether it has been kept."
+domain = "fundraising"
+scopes = ["personal", "shared", "public"]
+title = "what"
+in_space = "association"
+
+[fields]
+association = { kind = "link", to = "association", required = true, indexed = true, on_delete = "cascade" }
+campaign = { kind = "link", to = "campaign", required = true, indexed = true, on_delete = "cascade" }
+what = { kind = "string", required = true, description = "Monthly gift, Matching grant" }
+amount = { kind = "decimal", required = true, indexed = true }
+currency = { kind = "string" }
+contact = { kind = "link", to = "contact", on_delete = "clear", label = "From" }
+organisation = { kind = "link", to = "organisation", on_delete = "clear", label = "From (organisation)" }
+promised = { kind = "date", indexed = true }
+due = { kind = "date", indexed = true }
+fulfilled = { kind = "bool", default = false, indexed = true }
+fulfilled_at = { kind = "datetime", indexed = true, label = "Kept", stamp = { field = "fulfilled", value = "true" } }
+notes = { kind = "markdown" }

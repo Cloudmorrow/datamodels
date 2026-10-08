@@ -1,0 +1,23 @@
+[datamodel]
+id = "invoice"
+version = 1
+label = "Invoice"
+description = "A bill to a customer: its number, when it was issued and is due, what it comes to, and whether it is paid. Its lines are kept as written."
+domain = "invoicing"
+scopes = ["personal", "shared", "public"]
+title = "number"
+in_space = "book"
+
+[fields]
+book = { kind = "link", to = "book", indexed = true, on_delete = "cascade" }
+number = { kind = "string", required = true, indexed = true }
+organisation = { kind = "link", to = "organisation", on_delete = "clear" }
+contact = { kind = "link", to = "contact", on_delete = "clear", label = "Person" }
+quote = { kind = "link", to = "quote", on_delete = "clear" }
+issued = { kind = "date", indexed = true }
+due = { kind = "date", indexed = true }
+status = { kind = "enum", values = ["draft", "sent", "paid", "overdue", "void"], labels = ["Draft", "Sent", "Paid", "Overdue", "Void"], default = "draft", indexed = true }
+currency = { kind = "string" }
+total = { kind = "decimal", indexed = true }
+paid_at = { kind = "datetime", indexed = true, label = "Paid", stamp = { field = "status", value = "paid" } }
+notes = { kind = "markdown" }

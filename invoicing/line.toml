@@ -1,0 +1,20 @@
+[datamodel]
+id = "line"
+version = 1
+label = "Invoice line"
+description = "One line of an invoice, as written: the words, the quantity and the price stay what they were when it was issued, whatever the catalogue says later."
+domain = "invoicing"
+scopes = ["personal", "shared", "public"]
+title = "description"
+in_space = "book"
+ordered_within = ["invoice"]
+
+[fields]
+book = { kind = "link", to = "book", indexed = true, on_delete = "cascade" }
+invoice = { kind = "link", to = "invoice", required = true, indexed = true, on_delete = "cascade" }
+description = { kind = "string", required = true }
+quantity = { kind = "decimal", default = 1 }
+unit_price = { kind = "decimal" }
+tax_rate = { kind = "decimal", description = "In percent" }
+amount = { kind = "decimal", indexed = true }
+product = { kind = "link", to = "product", on_delete = "clear", description = "Where the line came from; the line stands on its own" }

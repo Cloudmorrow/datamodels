@@ -22,17 +22,29 @@ shown on the Quill's page in the catalog. A Quill reaches for a foundational
 datamodel first and extends only what is its own. This repository, and the
 registry page, hold only the foundational ones.
 
-They come in **domains**, chosen together when you install a Cloudmorrow
-([`domains.toml`](domains.toml)):
+They come in **domains**, chosen together when you install, each on a
+shelf — its category — for finding it ([`domains.toml`](domains.toml)):
 
-| domain | datamodels |
-| --- | --- |
-| Tasks | `board`, `task` |
-| Customers (CRM) | `book`, `organisation`, `contact`, `stage`, `deal`, `activity` |
-| Fleet | `vehicle` |
-| Calendars | `calendar`, `event` |
-| Messaging | `channel`, `message` |
-| Secrets | `secret` |
+| category | domain | datamodels |
+| --- | --- | --- |
+| Personal | Tasks | `board`, `task` |
+| Personal | Calendars | `calendar`, `event` |
+| Personal | Messaging | `channel`, `message` |
+| Personal | Files | `share`, `file` |
+| Home | Home | `item`, `expense` |
+| Business | Customers (CRM) | `book`, `organisation`, `contact`, `stage`, `deal`, `activity` |
+| Business | Products and services | `product`, `price` |
+| Business | Invoicing | `quote`, `quote_line`, `invoice`, `line`, `payment` |
+| Business | Purchasing | `supplier`, `purchase_order`, `receipt` |
+| Business | Agreements | `agreement`, `obligation` |
+| Operations | Projects | `project`, `time_entry` |
+| Operations | Fleet | `vehicle` |
+| Operations | Inventory and assets | `storage_location`, `stock_item`, `stock_movement`, `asset`, `maintenance` |
+| Operations | Workforce | `team`, `employment`, `leave` |
+| Community | Membership | `association`, `membership`, `donation` |
+| Community | Fundraising | `campaign`, `pledge` |
+| Community | Events | `registration` |
+| Developer | Secrets | `secret` |
 
 A **space** (`space = true`: a calendar, a channel) is personal, shared with
 members, or public, and what is in it (`in_space = "calendar"`) is for

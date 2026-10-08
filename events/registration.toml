@@ -1,0 +1,22 @@
+[datamodel]
+id = "registration"
+version = 1
+label = "Registration"
+description = "Somebody signed up for an event: who, how many places, whether they paid, and whether they came."
+domain = "events"
+scopes = ["personal", "shared", "public"]
+title = "name"
+in_space = "calendar"
+
+[fields]
+calendar = { kind = "link", to = "calendar", indexed = true, on_delete = "cascade" }
+event = { kind = "link", to = "event", required = true, indexed = true, on_delete = "cascade" }
+name = { kind = "string", required = true, description = "As they gave it" }
+contact = { kind = "link", to = "contact", on_delete = "clear" }
+organisation = { kind = "link", to = "organisation", on_delete = "clear" }
+email = { kind = "email" }
+places = { kind = "int", default = 1 }
+status = { kind = "enum", values = ["registered", "confirmed", "waitlisted", "cancelled"], labels = ["Registered", "Confirmed", "Waitlisted", "Cancelled"], default = "registered", indexed = true }
+paid = { kind = "bool", default = false, indexed = true }
+arrived = { kind = "datetime", indexed = true }
+notes = { kind = "markdown" }
