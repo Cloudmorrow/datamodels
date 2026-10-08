@@ -1,0 +1,19 @@
+[datamodel]
+id = "time_entry"
+version = 1
+label = "Time entry"
+description = "Hours worked on a project on a day: what was done, and whether it is billable."
+domain = "projects"
+scopes = ["personal", "shared", "public"]
+title = "what"
+in_space = "project"
+authored = true
+
+[fields]
+project = { kind = "link", to = "project", required = true, indexed = true, on_delete = "cascade" }
+what = { kind = "string", required = true }
+on = { kind = "date", required = true, indexed = true }
+hours = { kind = "decimal", required = true, indexed = true }
+task = { kind = "link", to = "task", on_delete = "clear" }
+billable = { kind = "bool", default = true, indexed = true }
+notes = { kind = "markdown" }

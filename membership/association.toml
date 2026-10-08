@@ -1,0 +1,16 @@
+[datamodel]
+id = "association"
+version = 1
+label = "Association"
+description = "A club, a society, a congregation: where its members, donations and campaigns are kept, shared with the people who run it."
+domain = "membership"
+scopes = ["personal", "shared", "public"]
+title = "name"
+space = true
+
+[fields]
+name = { kind = "string", required = true }
+email = { kind = "email" }
+website = { kind = "url" }
+currency = { kind = "string", default = "EUR" }
+description = { kind = "markdown" }

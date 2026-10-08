@@ -1,0 +1,19 @@
+[datamodel]
+id = "campaign"
+version = 1
+label = "Campaign"
+description = "An appeal with a goal: the new roof, the spring drive — what it is for, how much is wanted, and how it is going."
+domain = "fundraising"
+scopes = ["personal", "shared", "public"]
+title = "name"
+in_space = "association"
+
+[fields]
+association = { kind = "link", to = "association", required = true, indexed = true, on_delete = "cascade" }
+name = { kind = "string", required = true }
+goal = { kind = "decimal", indexed = true }
+currency = { kind = "string" }
+starts = { kind = "date", indexed = true }
+ends = { kind = "date", indexed = true }
+status = { kind = "enum", values = ["planned", "running", "done"], labels = ["Planned", "Running", "Done"], default = "planned", indexed = true }
+description = { kind = "markdown" }

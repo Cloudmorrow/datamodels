@@ -1,0 +1,20 @@
+[datamodel]
+id = "donation"
+version = 1
+label = "Donation"
+description = "A gift to the association: how much, from whom, when, and for which campaign if any."
+domain = "membership"
+scopes = ["personal", "shared", "public"]
+title = "what"
+in_space = "association"
+
+[fields]
+association = { kind = "link", to = "association", required = true, indexed = true, on_delete = "cascade" }
+what = { kind = "string", required = true, description = "Gift, Collection, Legacy" }
+amount = { kind = "decimal", required = true, indexed = true }
+currency = { kind = "string" }
+on = { kind = "date", required = true, indexed = true }
+contact = { kind = "link", to = "contact", on_delete = "clear", label = "From" }
+organisation = { kind = "link", to = "organisation", on_delete = "clear", label = "From (organisation)" }
+campaign = { kind = "link", to = "campaign", indexed = true, on_delete = "clear" }
+notes = { kind = "markdown" }

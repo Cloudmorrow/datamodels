@@ -1,0 +1,19 @@
+[datamodel]
+id = "payment"
+version = 1
+label = "Payment"
+description = "Money that came in against an invoice: how much, when, and how."
+domain = "invoicing"
+scopes = ["personal", "shared", "public"]
+title = "reference"
+in_space = "book"
+
+[fields]
+book = { kind = "link", to = "book", indexed = true, on_delete = "cascade" }
+invoice = { kind = "link", to = "invoice", required = true, indexed = true, on_delete = "cascade" }
+reference = { kind = "string", required = true, description = "What the bank or the receipt says" }
+amount = { kind = "decimal", required = true, indexed = true }
+currency = { kind = "string" }
+on = { kind = "date", required = true, indexed = true }
+method = { kind = "enum", values = ["transfer", "card", "cash", "other"], labels = ["Transfer", "Card", "Cash", "Other"], default = "transfer", indexed = true }
+notes = { kind = "markdown" }

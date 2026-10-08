@@ -1,0 +1,17 @@
+[datamodel]
+id = "item"
+version = 1
+label = "Item"
+description = "A thing in the house: what it is, how many, where it is kept, and whether it is on the shopping list."
+domain = "home"
+scopes = ["personal", "shared"]
+title = "name"
+
+[fields]
+name = { kind = "string", required = true }
+quantity = { kind = "decimal", indexed = true }
+unit = { kind = "string", description = "pcs, kg, l, packs" }
+where = { kind = "string", indexed = true, description = "The room, the cupboard, the shelf" }
+needed = { kind = "bool", default = false, indexed = true, label = "On the shopping list" }
+bought = { kind = "date", indexed = true, label = "Last bought" }
+notes = { kind = "markdown" }

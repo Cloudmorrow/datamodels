@@ -1,0 +1,21 @@
+[datamodel]
+id = "asset"
+version = 1
+label = "Asset"
+description = "One thing you own and track on its own: a laptop, a machine, a tool — with a tag, a place, a keeper and a life."
+domain = "inventory"
+scopes = ["personal", "shared"]
+title = "name"
+
+[fields]
+name = { kind = "string", required = true }
+tag = { kind = "string", indexed = true, description = "The number on the label" }
+kind = { kind = "string", indexed = true, description = "Laptop, machine, tool" }
+serial = { kind = "string" }
+location = { kind = "link", to = "storage_location", indexed = true, on_delete = "clear" }
+assigned_to = { kind = "link", to = "contact", on_delete = "clear", label = "Kept by" }
+bought = { kind = "date", indexed = true }
+cost = { kind = "decimal" }
+currency = { kind = "string" }
+status = { kind = "enum", values = ["in_use", "stored", "repair", "retired"], labels = ["In use", "Stored", "In repair", "Retired"], default = "in_use", indexed = true }
+notes = { kind = "markdown" }

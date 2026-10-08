@@ -1,0 +1,17 @@
+[datamodel]
+id = "expense"
+version = 1
+label = "Expense"
+description = "Money spent: how much, on what, when, and by whom — the household budget, one line at a time."
+domain = "home"
+scopes = ["personal", "shared"]
+title = "what"
+
+[fields]
+what = { kind = "string", required = true }
+amount = { kind = "decimal", required = true, indexed = true }
+currency = { kind = "string", default = "EUR" }
+when = { kind = "date", required = true, indexed = true }
+category = { kind = "enum", values = ["groceries", "housing", "transport", "health", "fun", "other"], labels = ["Groceries", "Housing", "Transport", "Health", "Fun", "Other"], default = "other", indexed = true }
+who = { kind = "link", to = "contact", on_delete = "clear", label = "Paid by" }
+notes = { kind = "markdown" }

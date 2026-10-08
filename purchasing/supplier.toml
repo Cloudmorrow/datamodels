@@ -1,0 +1,18 @@
+[datamodel]
+id = "supplier"
+version = 1
+label = "Supplier"
+description = "Somebody you buy from: the organisation, your terms with them, and how to reach the right person. Kept in a book, with the customers."
+domain = "purchasing"
+scopes = ["personal", "shared", "public"]
+title = "name"
+in_space = "book"
+
+[fields]
+book = { kind = "link", to = "book", indexed = true, on_delete = "cascade" }
+name = { kind = "string", required = true }
+organisation = { kind = "link", to = "organisation", on_delete = "clear" }
+contact = { kind = "link", to = "contact", on_delete = "clear", label = "Person" }
+terms = { kind = "string", description = "30 days, on delivery" }
+account = { kind = "string", description = "Your customer number with them" }
+notes = { kind = "markdown" }

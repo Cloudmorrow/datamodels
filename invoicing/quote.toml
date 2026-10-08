@@ -1,0 +1,21 @@
+[datamodel]
+id = "quote"
+version = 1
+label = "Quote"
+description = "An offer to a customer: what it would cost, until when it stands, and what came of it. Its lines are kept as written."
+domain = "invoicing"
+scopes = ["personal", "shared", "public"]
+title = "number"
+in_space = "book"
+
+[fields]
+book = { kind = "link", to = "book", indexed = true, on_delete = "cascade" }
+number = { kind = "string", required = true, indexed = true }
+organisation = { kind = "link", to = "organisation", on_delete = "clear" }
+contact = { kind = "link", to = "contact", on_delete = "clear", label = "Person" }
+issued = { kind = "date", indexed = true }
+valid_until = { kind = "date", indexed = true }
+status = { kind = "enum", values = ["draft", "sent", "accepted", "declined", "expired"], labels = ["Draft", "Sent", "Accepted", "Declined", "Expired"], default = "draft", indexed = true }
+currency = { kind = "string" }
+total = { kind = "decimal", indexed = true }
+notes = { kind = "markdown" }

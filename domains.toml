@@ -1,43 +1,159 @@
-# The domains: foundational datamodels that belong together, chosen together at install.
+# The domains: foundational datamodels that belong together, chosen together
+# at install. Each is on a shelf — its category — for finding it; the domain
+# is what is installed.
+
+[[categories]]
+id = "personal"
+label = "Personal"
+description = "Your own lists, plans, conversations and files."
+
+[[categories]]
+id = "home"
+label = "Home"
+description = "The household: what is in the house, and what it cost."
+
+[[categories]]
+id = "business"
+label = "Business"
+description = "Customers, what you sell, what you buy, the money, and the agreements."
+
+[[categories]]
+id = "operations"
+label = "Operations"
+description = "What a business runs on: projects, the fleet, the stock, the people."
+
+[[categories]]
+id = "community"
+label = "Community"
+description = "Associations: their members, their donors, their campaigns and their events."
+
+[[categories]]
+id = "developer"
+label = "Developer"
+description = "For people who build things."
 
 [[domains]]
 id = "tasks"
 label = "Tasks"
+category = "personal"
 description = "Boards and the tasks on them."
 datamodels = ["board", "task"]
 
 [[domains]]
-id = "crm"
-label = "Customers (CRM)"
-description = "The organisations and people you deal with, the deals in your pipeline, and what you do with them — kept in books you share."
-datamodels = ["book", "organisation", "contact", "stage", "deal", "activity"]
-
-[[domains]]
-id = "fleet"
-label = "Fleet"
-description = "Cars, vans and bikes: what you drive and keep on the road."
-datamodels = ["vehicle"]
-
-[[domains]]
 id = "calendars"
 label = "Calendars"
+category = "personal"
 description = "Calendars and the events on them."
 datamodels = ["calendar", "event"]
 
 [[domains]]
 id = "messaging"
 label = "Messaging"
+category = "personal"
 description = "Channels and the messages in them."
 datamodels = ["channel", "message"]
 
 [[domains]]
-id = "secrets"
-label = "Secrets"
-description = "Keys and passwords in vaults and environments, sealed; never an assistant's."
-datamodels = ["secret"]
-
-[[domains]]
 id = "files"
 label = "Files"
+category = "personal"
 description = "Your own drive, your fileshares, and the files in them."
 datamodels = ["share", "file"]
+
+[[domains]]
+id = "home"
+label = "Home"
+category = "home"
+description = "What is in the house and on the shopping list, and what the household spent."
+datamodels = ["item", "expense"]
+
+[[domains]]
+id = "crm"
+label = "Customers (CRM)"
+category = "business"
+description = "The organisations and people you deal with, the deals in your pipeline, and what you do with them — kept in books you share."
+datamodels = ["book", "organisation", "contact", "stage", "deal", "activity"]
+
+[[domains]]
+id = "products"
+label = "Products and services"
+category = "business"
+description = "What you sell, and what it costs: the catalogue and its prices, kept in the book with the customers."
+datamodels = ["product", "price"]
+
+[[domains]]
+id = "invoicing"
+label = "Invoicing"
+category = "business"
+description = "Quotes, invoices, their lines as written, and the payments against them."
+datamodels = ["quote", "quote_line", "invoice", "line", "payment"]
+
+[[domains]]
+id = "purchasing"
+label = "Purchasing"
+category = "business"
+description = "Suppliers, what you ordered from them, and what arrived."
+datamodels = ["supplier", "purchase_order", "receipt"]
+
+[[domains]]
+id = "agreements"
+label = "Agreements"
+category = "business"
+description = "Contracts, leases and subscriptions, and what they oblige."
+datamodels = ["agreement", "obligation"]
+
+[[domains]]
+id = "projects"
+label = "Projects"
+category = "operations"
+description = "Pieces of work with a beginning and an end, the tasks in them, and the hours spent."
+datamodels = ["project", "time_entry"]
+
+[[domains]]
+id = "fleet"
+label = "Fleet"
+category = "operations"
+description = "Cars, vans and bikes: what you drive and keep on the road."
+datamodels = ["vehicle"]
+
+[[domains]]
+id = "inventory"
+label = "Inventory and assets"
+category = "operations"
+description = "Stock you count, assets you track one by one, where they are kept, and what is done to them."
+datamodels = ["storage_location", "stock_item", "stock_movement", "asset", "maintenance"]
+
+[[domains]]
+id = "workforce"
+label = "Workforce"
+category = "operations"
+description = "Teams, who works for you in what role, and their time off."
+datamodels = ["team", "employment", "leave"]
+
+[[domains]]
+id = "membership"
+label = "Membership"
+category = "community"
+description = "Associations, their members and the gifts they receive."
+datamodels = ["association", "membership", "donation"]
+
+[[domains]]
+id = "fundraising"
+label = "Fundraising"
+category = "community"
+description = "Campaigns with a goal, and the pledges made to them."
+datamodels = ["campaign", "pledge"]
+
+[[domains]]
+id = "events"
+label = "Events"
+category = "community"
+description = "Who signed up for an event, and who came."
+datamodels = ["registration"]
+
+[[domains]]
+id = "secrets"
+label = "Secrets"
+category = "developer"
+description = "Keys and passwords in vaults and environments, sealed; never an assistant's."
+datamodels = ["secret"]

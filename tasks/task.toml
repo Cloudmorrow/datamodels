@@ -1,6 +1,6 @@
 [datamodel]
 id = "task"
-version = 1
+version = 2
 label = "Task"
 description = "One thing to do, on a board, in a lane. Its body is Markdown; subtasks are `- [ ]` lines."
 domain = "tasks"
@@ -15,3 +15,4 @@ body = { kind = "markdown", default = "" }
 lane = { kind = "enum", values = ["todo", "doing", "done"], labels = ["To Do", "Doing", "Done"], default = "todo", indexed = true }
 due = { kind = "date", indexed = true }
 done_at = { kind = "datetime", indexed = true, label = "Done", stamp = { field = "lane", value = "done" } }
+project = { kind = "link", to = "project", indexed = true, on_delete = "clear", description = "The project it is part of, when it is part of one" }

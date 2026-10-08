@@ -1,0 +1,19 @@
+[datamodel]
+id = "price"
+version = 1
+label = "Price"
+description = "One price of a product: for a list, a customer or a period — wholesale, 2026, the club rate."
+domain = "products"
+scopes = ["personal", "shared", "public"]
+title = "label"
+in_space = "book"
+
+[fields]
+book = { kind = "link", to = "book", indexed = true, on_delete = "cascade" }
+product = { kind = "link", to = "product", required = true, indexed = true, on_delete = "cascade" }
+label = { kind = "string", required = true, description = "Wholesale, Members, 2026" }
+amount = { kind = "decimal", required = true, indexed = true }
+currency = { kind = "string" }
+from = { kind = "date", indexed = true }
+to = { kind = "date", indexed = true }
+organisation = { kind = "link", to = "organisation", on_delete = "clear", description = "A price for one customer" }
