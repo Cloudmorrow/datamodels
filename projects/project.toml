@@ -2,7 +2,7 @@
 id = "project"
 version = 1
 label = "Project"
-description = "A piece of work with a beginning and an end, that tasks and hours belong to. Shared with the people on it."
+description = "A piece of work with a beginning and an end, that tasks and hours belong to. Shared with the people on it. Which customer it is for is a CRM Quill's to add."
 domain = "projects"
 scopes = ["personal", "shared", "public"]
 title = "name"
@@ -11,7 +11,6 @@ space = true
 [fields]
 name = { kind = "string", required = true }
 status = { kind = "enum", values = ["planned", "active", "done", "archived"], labels = ["Planned", "Active", "Done", "Archived"], default = "planned", indexed = true }
-customer = { kind = "link", to = "organisation", on_delete = "clear" }
 starts = { kind = "date", indexed = true }
 ends = { kind = "date", indexed = true }
 description = { kind = "markdown" }
