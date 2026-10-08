@@ -1,0 +1,20 @@
+[datamodel]
+id = "bank_transaction"
+version = 1
+label = "Bank transaction"
+description = "One line on a bank statement: when, how much, from or to whom — and the journal entry it was reconciled with."
+domain = "accounting"
+scopes = ["personal", "shared", "public"]
+title = "description"
+in_space = "ledger"
+
+[fields]
+ledger = { kind = "link", to = "ledger", required = true, indexed = true, on_delete = "cascade" }
+bank_account = { kind = "link", to = "bank_account", required = true, indexed = true, on_delete = "cascade" }
+on = { kind = "date", required = true, indexed = true }
+amount = { kind = "decimal", required = true, indexed = true, description = "Positive in, negative out" }
+description = { kind = "string", required = true }
+counterparty = { kind = "string", indexed = true }
+reference = { kind = "string" }
+entry = { kind = "link", to = "journal_entry", on_delete = "clear", description = "How it was booked" }
+reconciled = { kind = "bool", default = false, indexed = true }

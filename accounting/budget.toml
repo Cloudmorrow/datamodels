@@ -1,0 +1,19 @@
+[datamodel]
+id = "budget"
+version = 1
+label = "Budget"
+description = "What an account is meant to come to over a period: the year's marketing, the quarter's rent."
+domain = "accounting"
+scopes = ["personal", "shared", "public"]
+title = "name"
+in_space = "ledger"
+
+[fields]
+ledger = { kind = "link", to = "ledger", required = true, indexed = true, on_delete = "cascade" }
+name = { kind = "string", required = true }
+account = { kind = "link", to = "account", indexed = true, on_delete = "clear" }
+year = { kind = "int", indexed = true }
+period = { kind = "enum", values = ["year", "quarter", "month"], labels = ["Year", "Quarter", "Month"], default = "year", indexed = true }
+amount = { kind = "decimal", required = true, indexed = true }
+currency = { kind = "string" }
+notes = { kind = "markdown" }

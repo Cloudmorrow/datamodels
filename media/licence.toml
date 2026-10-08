@@ -1,0 +1,17 @@
+[datamodel]
+id = "licence"
+version = 1
+label = "Licence"
+description = "Under what terms media may be used: your own, royalty-free, rights-managed, Creative Commons, or a client's — and until when."
+domain = "media"
+scopes = ["personal", "shared", "public"]
+title = "name"
+in_space = "library"
+
+[fields]
+library = { kind = "link", to = "library", required = true, indexed = true, on_delete = "cascade" }
+name = { kind = "string", required = true, description = "Own work, Royalty-free, CC BY 4.0, Client exclusive" }
+kind = { kind = "enum", values = ["own", "royalty_free", "rights_managed", "creative_commons", "client", "other"], labels = ["Own work", "Royalty-free", "Rights-managed", "Creative Commons", "Client's", "Other"], default = "own", indexed = true }
+holder = { kind = "link", to = "organisation", on_delete = "clear", description = "Who holds the rights, when it is not you" }
+expires = { kind = "date", indexed = true }
+terms = { kind = "markdown" }

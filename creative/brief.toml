@@ -1,0 +1,19 @@
+[datamodel]
+id = "brief"
+version = 1
+label = "Brief"
+description = "What a client asked for: the ask, the deliverables, the deadline and the money, in a project."
+domain = "creative"
+scopes = ["personal", "shared", "public"]
+title = "title"
+in_space = "project"
+
+[fields]
+project = { kind = "link", to = "project", required = true, indexed = true, on_delete = "cascade" }
+title = { kind = "string", required = true }
+client = { kind = "link", to = "contact", on_delete = "clear", description = "Who asked" }
+due = { kind = "date", indexed = true }
+status = { kind = "enum", values = ["draft", "agreed", "in_progress", "in_review", "delivered"], labels = ["Draft", "Agreed", "In progress", "In review", "Delivered"], default = "draft", indexed = true }
+budget = { kind = "decimal" }
+currency = { kind = "string" }
+ask = { kind = "markdown", description = "The brief itself" }

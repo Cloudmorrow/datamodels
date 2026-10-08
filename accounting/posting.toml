@@ -1,0 +1,19 @@
+[datamodel]
+id = "posting"
+version = 1
+label = "Posting"
+description = "One line of a journal entry: an account, and a debit or a credit on it. An entry's postings balance."
+domain = "accounting"
+scopes = ["personal", "shared", "public"]
+title = "description"
+in_space = "ledger"
+ordered_within = ["entry"]
+
+[fields]
+ledger = { kind = "link", to = "ledger", required = true, indexed = true, on_delete = "cascade" }
+entry = { kind = "link", to = "journal_entry", required = true, indexed = true, on_delete = "cascade" }
+account = { kind = "link", to = "account", required = true, indexed = true, on_delete = "clear" }
+description = { kind = "string", required = true }
+debit = { kind = "decimal", default = 0 }
+credit = { kind = "decimal", default = 0 }
+tax_rate = { kind = "link", to = "tax_rate", on_delete = "clear" }

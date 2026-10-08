@@ -1,0 +1,25 @@
+[datamodel]
+id = "media_item"
+version = 1
+label = "Media item"
+description = "One picture, film, sound, document or design in a library: where the file is, what it is, who made it, and under what licence it may be used."
+domain = "media"
+scopes = ["personal", "shared", "public"]
+title = "title"
+in_space = "library"
+
+[fields]
+library = { kind = "link", to = "library", required = true, indexed = true, on_delete = "cascade" }
+title = { kind = "string", required = true }
+kind = { kind = "enum", values = ["image", "video", "audio", "document", "design", "other"], labels = ["Image", "Video", "Audio", "Document", "Design", "Other"], default = "image", indexed = true }
+path = { kind = "string", required = true, description = "Where the file is: the share and the path in it, media/2026/shoot/0412.jpg" }
+format = { kind = "string", indexed = true, description = "jpg, mp4, wav, pdf, psd" }
+size = { kind = "int", description = "In bytes" }
+width = { kind = "int" }
+height = { kind = "int" }
+duration = { kind = "decimal", description = "In seconds" }
+taken = { kind = "datetime", indexed = true, label = "Taken or made" }
+credit = { kind = "string", indexed = true, description = "The photographer, the artist, the studio" }
+licence = { kind = "link", to = "licence", indexed = true, on_delete = "clear" }
+keywords = { kind = "string", indexed = true, description = "Words to find it by, separated by commas" }
+description = { kind = "markdown" }
