@@ -4,7 +4,17 @@ The standard kinds of data in [Cloudmorrow](https://github.com/Cloudmorrow/cloud
 the shapes every [Quill](https://github.com/Cloudmorrow/cloudmorrow/blob/main/docs/QUILLS.md)
 agrees on. A contact is a contact whichever Quill made it; a Quill that needs
 more adds fields of its own to one of these, rather than inventing a second
-kind of contact.
+kind of contact. The contract — field kinds, versions, extensions, spaces,
+who may see and change what — is
+[DATAMODELS.md](https://github.com/Cloudmorrow/cloudmorrow/blob/main/docs/DATAMODELS.md);
+the datamodels here are shown at [cloudmorrow.com/datamodels](https://cloudmorrow.com/datamodels).
+
+There are two kinds of datamodel. **Foundational** ones are the ones in this
+repository: the shapes Cloudmorrow decides every Quill should agree on,
+grown by our hand, by pull request here. **Extended** ones are what a Quill
+adds on top — fields of its own on a foundational datamodel
+(`fleet.odometer` on a `vehicle`), or whole datamodels under its own name
+(`fleet.service_visit`) — declared in the Quill's own repository.
 
 They come in **domains**, chosen together when you install a Cloudmorrow
 ([`domains.toml`](domains.toml)):
@@ -60,6 +70,13 @@ hidden until it is asked for.
 
 ## Changing one
 
-Versions are integers and a released version never changes. A new standard
-field arrives as a new version; the bar for a new datamodel here is that two
-unrelated Quills wanted it. Open a pull request with the reason.
+Versions are integers and a released version never changes. A new version
+may add fields and may put its records in a space; it never takes a field
+away or changes a field's kind, so every record written before keeps
+opening. A shape that needs a field gone is a new datamodel.
+
+A new datamodel or domain is Cloudmorrow's call: a shape we judge every
+Quill should agree on, proven on a screen by a Quill of ours before it is
+released. Open a pull request with the reason; a shape outside the
+foundation is a Quill's own extended datamodel, which is where it stays
+unless we take it in.
