@@ -1,0 +1,16 @@
+[datamodel]
+id = "collection_item"
+version = 1
+label = "In collection"
+description = "One media item's place in one collection, in order."
+domain = "media"
+scopes = ["personal", "shared", "public"]
+title = "caption"
+in_space = "library"
+ordered_within = ["collection"]
+
+[fields]
+library = { kind = "link", to = "library", required = true, indexed = true, on_delete = "cascade" }
+collection = { kind = "link", to = "collection", required = true, indexed = true, on_delete = "cascade" }
+media = { kind = "link", to = "media_item", required = true, indexed = true, on_delete = "cascade" }
+caption = { kind = "string", description = "What it is called in this collection, when that differs" }

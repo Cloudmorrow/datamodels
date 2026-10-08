@@ -1,0 +1,19 @@
+[datamodel]
+id = "bank_account"
+version = 1
+label = "Bank account"
+description = "An account at a bank, and the ledger account it is booked to."
+domain = "accounting"
+scopes = ["personal", "shared", "public"]
+title = "name"
+in_space = "ledger"
+
+[fields]
+ledger = { kind = "link", to = "ledger", required = true, indexed = true, on_delete = "cascade" }
+name = { kind = "string", required = true }
+bank = { kind = "string" }
+iban = { kind = "string", label = "IBAN" }
+account = { kind = "link", to = "account", on_delete = "clear", description = "The ledger account it is booked to" }
+currency = { kind = "string" }
+balance = { kind = "decimal", indexed = true, description = "As last seen" }
+notes = { kind = "markdown" }

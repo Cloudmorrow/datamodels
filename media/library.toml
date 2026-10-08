@@ -1,0 +1,13 @@
+[datamodel]
+id = "library"
+version = 1
+label = "Library"
+description = "A media bank: the pictures, films, sounds and designs a studio or a family keeps, shared with the people who use them."
+domain = "media"
+scopes = ["personal", "shared", "public"]
+title = "name"
+space = true
+
+[fields]
+name = { kind = "string", required = true }
+description = { kind = "markdown" }

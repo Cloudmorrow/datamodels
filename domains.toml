@@ -28,6 +28,11 @@ label = "Community"
 description = "Associations: their members, their donors, their campaigns and their events."
 
 [[categories]]
+id = "creative"
+label = "Creative"
+description = "For people who make things: the media bank, and work for clients."
+
+[[categories]]
 id = "developer"
 label = "Developer"
 description = "For people who build things."
@@ -103,6 +108,13 @@ description = "Contracts, leases and subscriptions, and what they oblige."
 datamodels = ["agreement", "obligation"]
 
 [[domains]]
+id = "accounting"
+label = "Accounting"
+category = "business"
+description = "The books: a chart of accounts, journal entries and their postings, tax rates, bank accounts and their transactions, and budgets."
+datamodels = ["ledger", "account", "journal_entry", "posting", "tax_rate", "bank_account", "bank_transaction", "budget"]
+
+[[domains]]
 id = "projects"
 label = "Projects"
 category = "operations"
@@ -150,6 +162,20 @@ label = "Events"
 category = "community"
 description = "Who signed up for an event, and who came."
 datamodels = ["registration"]
+
+[[domains]]
+id = "media"
+label = "Media bank"
+category = "creative"
+description = "Pictures, films, sounds and designs in libraries you share: what each is, who made it, and under what licence it may be used."
+datamodels = ["library", "media_item", "collection", "collection_item", "licence"]
+
+[[domains]]
+id = "creative"
+label = "Creative work"
+category = "creative"
+description = "Work for clients, in projects: the brief, the deliverables, and the rounds of review."
+datamodels = ["brief", "deliverable", "review"]
 
 [[domains]]
 id = "secrets"

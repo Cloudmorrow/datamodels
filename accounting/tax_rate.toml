@@ -1,0 +1,17 @@
+[datamodel]
+id = "tax_rate"
+version = 1
+label = "Tax rate"
+description = "A rate of tax that a posting, a line or a price may carry: VAT at 25 percent, reduced, none."
+domain = "accounting"
+scopes = ["personal", "shared", "public"]
+title = "name"
+in_space = "ledger"
+
+[fields]
+ledger = { kind = "link", to = "ledger", required = true, indexed = true, on_delete = "cascade" }
+name = { kind = "string", required = true, description = "VAT 25%, Reduced, Exempt" }
+rate = { kind = "decimal", required = true, indexed = true, description = "In percent" }
+applies_to = { kind = "enum", values = ["sales", "purchases", "both"], labels = ["Sales", "Purchases", "Both"], default = "both", indexed = true }
+account = { kind = "link", to = "account", on_delete = "clear", description = "Where the tax is booked" }
+active = { kind = "bool", default = true, indexed = true }

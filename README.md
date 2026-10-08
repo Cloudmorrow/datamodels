@@ -37,6 +37,7 @@ shelf — its category — for finding it ([`domains.toml`](domains.toml)):
 | Business | Invoicing | `quote`, `quote_line`, `invoice`, `line`, `payment` |
 | Business | Purchasing | `supplier`, `purchase_order`, `receipt` |
 | Business | Agreements | `agreement`, `obligation` |
+| Business | Accounting | `ledger`, `account`, `journal_entry`, `posting`, `tax_rate`, `bank_account`, `bank_transaction`, `budget` |
 | Operations | Projects | `project`, `time_entry` |
 | Operations | Fleet | `vehicle` |
 | Operations | Inventory and assets | `storage_location`, `stock_item`, `stock_movement`, `asset`, `maintenance` |
@@ -44,6 +45,8 @@ shelf — its category — for finding it ([`domains.toml`](domains.toml)):
 | Community | Membership | `association`, `membership`, `donation` |
 | Community | Fundraising | `campaign`, `pledge` |
 | Community | Events | `registration` |
+| Creative | Media bank | `library`, `media_item`, `collection`, `collection_item`, `licence` |
+| Creative | Creative work | `brief`, `deliverable`, `review` |
 | Developer | Secrets | `secret` |
 
 A **space** (`space = true`: a calendar, a channel) is personal, shared with

@@ -1,0 +1,17 @@
+[datamodel]
+id = "account"
+version = 1
+label = "Account"
+description = "One account in the chart of accounts: its number, its name, and whether it is an asset, a liability, equity, income or an expense."
+domain = "accounting"
+scopes = ["personal", "shared", "public"]
+title = "name"
+in_space = "ledger"
+
+[fields]
+ledger = { kind = "link", to = "ledger", required = true, indexed = true, on_delete = "cascade" }
+number = { kind = "string", required = true, indexed = true, description = "1920, 4000: as the chart has it" }
+name = { kind = "string", required = true }
+kind = { kind = "enum", values = ["asset", "liability", "equity", "income", "expense"], labels = ["Asset", "Liability", "Equity", "Income", "Expense"], required = true, indexed = true }
+active = { kind = "bool", default = true, indexed = true }
+notes = { kind = "markdown" }

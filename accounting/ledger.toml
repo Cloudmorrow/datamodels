@@ -1,0 +1,15 @@
+[datamodel]
+id = "ledger"
+version = 1
+label = "Ledger"
+description = "The books of one business or household: its accounts, its entries, its bank accounts and its budgets, shared with whoever keeps them."
+domain = "accounting"
+scopes = ["personal", "shared", "public"]
+title = "name"
+space = true
+
+[fields]
+name = { kind = "string", required = true }
+currency = { kind = "string", default = "EUR" }
+fiscal_year_starts = { kind = "string", default = "01-01", label = "Fiscal year starts", description = "Month and day, MM-DD" }
+description = { kind = "markdown" }

@@ -1,0 +1,19 @@
+[datamodel]
+id = "journal_entry"
+version = 1
+label = "Journal entry"
+description = "One booking: a date, what it is for, and its postings, which balance. Drafted, then posted, then never changed — voided instead."
+domain = "accounting"
+scopes = ["personal", "shared", "public"]
+title = "description"
+in_space = "ledger"
+
+[fields]
+ledger = { kind = "link", to = "ledger", required = true, indexed = true, on_delete = "cascade" }
+number = { kind = "string", indexed = true, description = "The voucher number, as the ledger numbers them" }
+on = { kind = "date", required = true, indexed = true }
+description = { kind = "string", required = true }
+reference = { kind = "string", indexed = true, description = "The invoice or receipt it books: its number" }
+status = { kind = "enum", values = ["draft", "posted", "void"], labels = ["Draft", "Posted", "Void"], default = "draft", indexed = true }
+posted_at = { kind = "datetime", indexed = true, label = "Posted", stamp = { field = "status", value = "posted" } }
+notes = { kind = "markdown" }

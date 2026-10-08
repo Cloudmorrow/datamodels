@@ -1,0 +1,20 @@
+[datamodel]
+id = "deliverable"
+version = 1
+label = "Deliverable"
+description = "One thing a brief asks for, and where it stands: a logo, a film, a text — its version, and the media item it is."
+domain = "creative"
+scopes = ["personal", "shared", "public"]
+title = "title"
+in_space = "project"
+
+[fields]
+project = { kind = "link", to = "project", required = true, indexed = true, on_delete = "cascade" }
+brief = { kind = "link", to = "brief", required = true, indexed = true, on_delete = "cascade" }
+title = { kind = "string", required = true }
+kind = { kind = "enum", values = ["image", "video", "audio", "design", "text", "other"], labels = ["Image", "Video", "Audio", "Design", "Text", "Other"], default = "design", indexed = true }
+version = { kind = "int", default = 1, indexed = true }
+status = { kind = "enum", values = ["todo", "in_progress", "in_review", "approved", "delivered"], labels = ["To do", "In progress", "In review", "Approved", "Delivered"], default = "todo", indexed = true }
+media = { kind = "link", to = "media_item", on_delete = "clear", description = "The item in the media bank, once there is one" }
+due = { kind = "date", indexed = true }
+notes = { kind = "markdown" }

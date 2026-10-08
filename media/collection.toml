@@ -1,0 +1,14 @@
+[datamodel]
+id = "collection"
+version = 1
+label = "Collection"
+description = "A named set of media items: a shoot, a campaign, the best of the year. An item may be in many."
+domain = "media"
+scopes = ["personal", "shared", "public"]
+title = "name"
+in_space = "library"
+
+[fields]
+library = { kind = "link", to = "library", required = true, indexed = true, on_delete = "cascade" }
+name = { kind = "string", required = true }
+description = { kind = "markdown" }

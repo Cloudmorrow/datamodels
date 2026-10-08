@@ -1,0 +1,20 @@
+[datamodel]
+id = "review"
+version = 1
+label = "Review"
+description = "One round of feedback on a deliverable: who looked, what they said, and whether it is approved or wants changes."
+domain = "creative"
+scopes = ["personal", "shared", "public"]
+title = "summary"
+in_space = "project"
+authored = true
+
+[fields]
+project = { kind = "link", to = "project", required = true, indexed = true, on_delete = "cascade" }
+deliverable = { kind = "link", to = "deliverable", required = true, indexed = true, on_delete = "cascade" }
+round = { kind = "int", default = 1, indexed = true }
+summary = { kind = "string", required = true }
+by = { kind = "link", to = "contact", on_delete = "clear", description = "Who reviewed, when it was a client" }
+verdict = { kind = "enum", values = ["changes", "approved"], labels = ["Changes wanted", "Approved"], default = "changes", indexed = true }
+on = { kind = "date", indexed = true }
+feedback = { kind = "markdown" }
