@@ -1,0 +1,72 @@
+# A release of the datamodels: what the Quill Catalog pins and every server
+# copies its datamodels from. Run it from the Actions tab (or the API): it
+# checks main as every push is checked, tags it with the next version and
+# publishes the release. Then the catalog's pull request moves its
+# [datamodels] ref to it.
+name: release
+on:
+  workflow_dispatch:
+    inputs:
+      bump:
+        description: "Which number goes up: minor (the usual: new fields or datamodels), patch or major"
+        type: choice
+        options: [minor, patch, major]
+        default: minor
+permissions:
+  contents: write
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install "cloudmorrow[server] @ git+https://github.com/Cloudmorrow/cloudmorrow"
+      - name: check
+        run: |
+          python - <<'PY'
+          import tomllib
+          from pathlib import Path
+          from cloudmorrow.server.datamodels import load_datamodel
+          found = {}
+          for path in sorted(Path(".").glob("*/*.toml")):
+              model = load_datamodel(path)
+              assert model.id not in found, f"{model.id} is defined twice"
+              found[model.id] = model
+          for model in found.values():
+              for f in model.fields:
+                  assert f.kind != "link" or f.to in found, f"{model.id}.{f.name} links to {f.to}"
+          domains = tomllib.loads(Path("domains.toml").read_text())["domains"]
+          listed = {m for d in domains for m in d["datamodels"]}
+          assert listed == set(found), sorted(listed ^ set(found))
+          print(f"{len(found)} datamodels in {len(domains)} domains check out")
+          PY
+      - name: The tag
+        id: tag
+        env:
+          BUMP: ${{ inputs.bump }}
+        run: |
+          if git tag --points-at HEAD | grep -q '^v'; then
+            echo "main is released already as $(git tag --points-at HEAD | grep '^v' | head -1)"; exit 1
+          fi
+          latest=$(git tag --list 'v*' | grep -E '^v[0-9]+\.[0-9]+\.[0-9]+$' | sort -V | tail -1)
+          IFS=. read -r major minor patch <<< "${latest#v}"
+          case "$BUMP" in
+            major) tag="v$((major + 1)).0.0" ;;
+            patch) tag="v$major.$minor.$((patch + 1))" ;;
+            *) tag="v$major.$((minor + 1)).0" ;;
+          esac
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git tag -a "$tag" -m "$tag: $(git log -1 --pretty=%s)"
+          git push origin "$tag"
+          echo "$latest → $tag"
+          echo "name=$tag" >> "$GITHUB_OUTPUT"
+      - run: gh release create "$TAG" --title "$TAG" --generate-notes --verify-tag
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ steps.tag.outputs.name }}
