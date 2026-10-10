@@ -65,6 +65,10 @@ A server copies in the ones its Quills use, from the release the
 [Quill Catalog](https://github.com/Cloudmorrow/quill-catalog) pins, and keeps
 them: it never needs this repository to run.
 
+A release is a tag, `vX.Y.Z`. Run the **release** workflow from the Actions
+tab (minor, patch or major): it checks `main`, tags it with the next version
+and publishes the release; then the catalog's `[datamodels]` ref moves to it.
+
 ## The format
 
 ```toml
