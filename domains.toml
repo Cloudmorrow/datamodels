@@ -55,8 +55,8 @@ datamodels = ["calendar", "event"]
 id = "messaging"
 label = "Messaging"
 category = "personal"
-description = "Channels and the messages in them."
-datamodels = ["channel", "message"]
+description = "Channels, the messages in them, and reactions to those."
+datamodels = ["channel", "message", "reaction"]
 
 [[domains]]
 id = "files"
