@@ -95,7 +95,9 @@ Field kinds: string, text, markdown, bool, int, decimal, date, datetime, enum,
 email, phone, url, link, json. Indexed fields are plain on disk so a server can
 filter by them; everything else is encrypted at rest. `secret = true` on a string
 or text field keeps it out of every listing and has every surface draw it
-hidden until it is asked for.
+hidden until it is asked for. `managed = true` on a field of a datamodel that
+lives in a space lets whoever manages the space change that one field on
+anybody's record — a message's `pinned` — while the rest stays its author's.
 
 ## Changing one
 
