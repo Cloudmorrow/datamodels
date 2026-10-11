@@ -67,7 +67,10 @@ them: it never needs this repository to run.
 
 A release is a tag, `vX.Y.Z`. Run the **release** workflow from the Actions
 tab (minor, patch or major): it checks `main`, tags it with the next version
-and publishes the release; then the catalog's `[datamodels]` ref moves to it.
+and publishes the release. Then the catalog's **releases** workflow moves
+its `[datamodels]` ref to it by itself, once every Quill in the catalog
+checks out against the new release; until then the pin stays, and the run
+names the Quill that breaks. Nobody edits that ref by hand.
 
 ## The format
 

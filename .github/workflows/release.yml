@@ -1,8 +1,10 @@
 # A release of the datamodels: what the Quill Catalog pins and every server
 # copies its datamodels from. Run it from the Actions tab (or the API): it
 # checks main as every push is checked, tags it with the next version and
-# publishes the release. Then the catalog's pull request moves its
-# [datamodels] ref to it.
+# publishes the release. Then the catalog's releases workflow moves its
+# [datamodels] ref to it by itself, once every Quill checks out against
+# the new release; until then the pin stays, and the run names the Quill
+# that breaks.
 name: release
 on:
   workflow_dispatch:
