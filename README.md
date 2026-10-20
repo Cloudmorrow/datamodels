@@ -38,6 +38,7 @@ shelf — its category — for finding it ([`domains.toml`](domains.toml)):
 | Business | Purchasing | `supplier`, `purchase_order`, `receipt` |
 | Business | Agreements | `agreement`, `obligation` |
 | Business | Accounting | `ledger`, `account`, `journal_entry`, `posting`, `tax_rate`, `bank_account`, `bank_transaction`, `budget` |
+| Business | Attestations | `snapshot`, `attestation` |
 | Operations | Projects | `project`, `time_entry` |
 | Operations | Fleet | `vehicle` |
 | Operations | Inventory and assets | `storage_location`, `stock_item`, `stock_movement`, `asset`, `maintenance` |
