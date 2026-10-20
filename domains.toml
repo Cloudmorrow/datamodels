@@ -115,6 +115,13 @@ description = "The books: a chart of accounts, journal entries and their posting
 datamodels = ["ledger", "account", "journal_entry", "posting", "tax_rate", "bank_account", "bank_transaction", "budget"]
 
 [[domains]]
+id = "attestations"
+label = "Attestations"
+category = "business"
+description = "A frozen copy of a space's records at one moment — the books at year end — and the signed word of whoever validated it."
+datamodels = ["snapshot", "attestation"]
+
+[[domains]]
 id = "projects"
 label = "Projects"
 category = "operations"
