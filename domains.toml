@@ -66,6 +66,13 @@ description = "Your own drive, your fileshares, and the files in them."
 datamodels = ["share", "file"]
 
 [[domains]]
+id = "sheets"
+label = "Sheets"
+category = "business"
+description = "Small spreadsheets: cells, numbers and formulas, kept as typed."
+datamodels = ["sheet"]
+
+[[domains]]
 id = "home"
 label = "Home"
 category = "home"
