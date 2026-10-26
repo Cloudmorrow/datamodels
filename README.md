@@ -32,7 +32,6 @@ shelf — its category — for finding it ([`domains.toml`](domains.toml)):
 | Personal | Messaging | `channel`, `message` |
 | Personal | Files | `share`, `file` |
 | Home | Home | `item`, `expense` |
-| Business | Sheets | `sheet` |
 | Business | Customers (CRM) | `book`, `organisation`, `contact`, `stage`, `deal`, `activity` |
 | Business | Products and services | `product`, `price` |
 | Business | Invoicing | `quote`, `quote_line`, `invoice`, `line`, `payment` |
